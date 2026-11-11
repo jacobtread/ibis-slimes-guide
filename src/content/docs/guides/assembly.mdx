@@ -1,0 +1,233 @@
+---
+title: Assembly
+description: Guide for assembling the trackers
+---
+
+import { Image } from "astro:assets";
+import combinedIMUs from "../../../assets/imu-prep/1-combined.jpg";
+import combinedIMUsFlipped from "../../../assets/imu-prep/2-combined-flipped.jpg";
+import tapedCombedIMUs from "../../../assets/imu-prep/3-combined-taped.jpg";
+import tapedCombedIMUsTrimmed from "../../../assets/imu-prep/4-combined-taped-trimmed.jpg";
+import imuCutLines from "../../../assets/imu-prep/imu-cut-lines.jpg";
+import tapedSplit from "../../../assets/imu-prep/taped-split.jpg";
+import imuMarkedMagPins from "../../../assets/imu-mag/imu-marked-mag-pins.jpg";
+import imuMagPinsSoldered from "../../../assets/imu-mag/imu-mag-pins-soldered.jpg";
+import pinsSplit from "../../../assets/pins/pins-split.jpg";
+import pinsUnsplit from "../../../assets/pins/pins-unsplit.jpg";
+import sparePin90deg from "../../../assets/pins/spare-pin-90deg.jpg";
+import pinsPlastic from "../../../assets/pins/pins-plastic.jpg";
+import imuInSolderingRig from "../../../assets/imu-solder/imu-in-soldering-rig.jpg";
+import imuInSolderingRigWithPins from "../../../assets/imu-solder/imu-in-soldering-rig-with-pins.jpg";
+import imuInRigSoldered from "../../../assets/imu-solder/imu-in-rig-soldered.jpg";
+import imuSolderedStandalone from "../../../assets/imu-solder/imu-soldered-standalone.jpg";
+import imuSolderedPlasticRemoved from "../../../assets/imu-solder/imu-soldered-pins-plastic-removed.jpg";
+
+### IMUs
+
+When your IMUs arrive assuming they are LSM6DSVs ordered from [Mofflab](https://moffshop.deyta.de/) they will arrive connected like the
+following:
+
+<table>
+    <tr>
+        <td>
+            <Image
+                src={combinedIMUs}
+                alt="Combined IMUs"
+                style="max-height: 400px;width:auto;"
+            />
+        </td>
+        <td>
+            <Image
+                src={combinedIMUsFlipped}
+                alt="Combined IMUs Flipped"
+                style="max-height: 400px;width:auto;"
+            />
+        </td>
+    </tr>
+</table>
+
+:::tip
+Avoid splitting your IMUs apart straight away. Leaving them connecting will help for the initial steps
+:::
+
+### Protective Taping
+
+#### Applying tape
+
+To protect the IMU that will be tightly stacked on top of the rest of our electronics we want to apply Kapton Tape to the back of the IMU
+to ensure that no contacts are shorted against the board underneath it
+
+<Image
+    src={tapedCombedIMUs}
+    alt="Taped IMUs"
+    style="max-height: 400px;width:auto;"
+/>
+
+:::tip
+Try to line up the IMU with the left side of the tape as this will make trimming it down easier
+:::
+
+#### Trimming down the tape
+
+After applying your tape trim down the tape with scissors or a sharp craft knife so that it matches the size of the IMUs
+
+<Image
+    src={tapedCombedIMUsTrimmed}
+    alt="Trimmed down taped IMUs"
+    style="max-height: 400px;width:auto;"
+/>
+
+### Splitting IMUs
+
+Now that you've taped your IMUs you can split them apart, I recommend running a sharp knife across the dividing lines to split the tape and loosen then bond before gently bending until it snaps off
+
+<table>
+    <tr>
+        <td>
+            <Image
+                src={imuCutLines}
+                alt="Cut lines for IMUs"
+                style="max-height: 400px;width:auto;"
+            />
+        </td>
+        <td>
+            <Image
+                src={tapedSplit}
+                alt="Split IMUs"
+                style="max-height: 400px;width:auto;"
+            />
+        </td>
+    </tr>
+</table>
+
+### Magnetometer soldering
+
+The LSM6DSV chip has its magnetometer disabled out of the box through jumper pins, if you plan on using them you will need to connect these pins.
+If you don't want to use the magnetometer you can skip this step.
+
+:::note
+The power drain from connecting the magnetometer is negligible and can be freely enabled and disabled in software with a single if it doesn't work well for you so I recommend connecting it anyway.
+
+For more information on the difference between using a magnetometer (9 DOF) and not (6 DOF) you can continue reading [Here](https://docs.slimevr.dev/diy/imu-comparison.html#whats-the-difference-between-an-imu-with-a-magnetometer-9-dof-and-an-imu-without-a-magnetometer-6-dof)
+
+Some important snips from the above documentation:
+
+> "IMUs with a magnetometer, like a compass, use the Earth's magnetic field as a reference point to reduce gyroscope drift, however they require a stable magnetic environment or else they will perform erratically."
+
+> "IMUs without a magnetometer don't require a stable magnetic environment, but are prone to gyroscope drift over time due to being unable to differentiate sensor noise from actual movement."
+
+> "For SlimeVR's purposes, neither is inherently better or worse than the other."
+
+:::
+
+To connect the magnetometer you must bridge pads 5, 6, 7, and 8 like so:
+
+<table>
+    <tr>
+        <td>
+            <Image
+                src={imuMarkedMagPins}
+                alt="Marked IMU Mag pins"
+                style="max-height: 400px;width:auto;"
+            />
+        </td>
+        <td>
+            <Image
+                src={imuMagPinsSoldered}
+                alt="Soldered IMU Mag Pins"
+                style="max-height: 400px;width:auto;"
+            />
+        </td>
+    </tr>
+</table>
+
+### Pre-Soldering the IMU
+
+This step has been designed by [ibis-trackers](https://github.com/VYRO-VR/ibis-trackers) to avoid damaging other components when connecting your IMU. This step uses
+the [Soldering Cube](/models/SolderCube.stl) model to assist with aligning and soldering pins.
+
+#### Preparing Pins
+
+Your MCU board should have come with set of pins, we will be using these to connect our MCU and IMU together.
+
+Take your pins and split them into 6 + 6 + 1 (Each row should have 13 pins) like so:
+
+<table>
+    <tr>
+        <td>
+            <Image
+                src={pinsUnsplit}
+                alt="Pins"
+                style="max-height: 400px;width:auto;"
+            />
+        </td>
+        <td>
+            <Image
+                src={pinsSplit}
+                alt="Pins Split"
+                style="max-height: 400px;width:auto;"
+            />
+        </td>
+    </tr>
+</table>
+
+Once you've split the pins you'll need to push down the plastic covering till the pin is barely sticking out the bottom like so:
+
+<Image
+    src={pinsPlastic}
+    alt="Pins Split"
+    style="max-height: 400px;width:auto;"
+/>
+
+#### Preparing your solder cube
+
+First place your IMU in the top of the soldering cube, the side with the most pins should be facing outwards towards the open side of the cube like so:
+
+<Image
+    src={imuInSolderingRig}
+    alt="IMU in soldering rig"
+    style="max-height: 400px;width:auto;"
+/>
+
+Next place the pins you cut so that they sit in the following holes on the soldering cube, the pins should line up with the outer slits on the IMU **DO NOT** place them through the holes on the IMU.
+
+Only the last 6 pins should line up, skip the first pin on the left:
+
+<Image
+    src={imuInSolderingRigWithPins}
+    alt="IMU in soldering rig with pins"
+    style="max-height: 400px;width:auto;"
+/>
+
+#### Solder the pins
+
+You can now solder the pins to the pads on the IMU:
+
+<Image
+    src={imuInRigSoldered}
+    alt="IMU in soldering rig"
+    style="max-height: 400px;width:auto;"
+/>
+
+#### Remove the IMU from the soldering cube
+
+Now that you've finished soldering the IMU you can remove it from the soldering cube and remove the plastic casing from the pins:
+
+<table>
+    <tr>
+        <td>
+            <Image
+                src={imuSolderedStandalone}
+                alt="Pins"
+                style="max-height: 400px;width:auto;"
+            />
+        </td>
+        <td>
+            <Image
+                src={imuSolderedPlasticRemoved}
+                alt="Pins Split"
+                style="max-height: 400px;width:auto;"
+            />
+        </td>
+    </tr>
+</table>
