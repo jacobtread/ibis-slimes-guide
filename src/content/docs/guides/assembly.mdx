@@ -4,28 +4,20 @@ description: Guide for assembling the trackers
 ---
 
 import { Image } from "astro:assets";
-import combinedIMUs from "../../../assets/imu-prep/1-combined.jpg";
-import combinedIMUsFlipped from "../../../assets/imu-prep/2-combined-flipped.jpg";
-import tapedCombedIMUs from "../../../assets/imu-prep/3-combined-taped.jpg";
-import tapedCombedIMUsTrimmed from "../../../assets/imu-prep/4-combined-taped-trimmed.jpg";
-import imuCutLines from "../../../assets/imu-prep/imu-cut-lines.jpg";
-import tapedSplit from "../../../assets/imu-prep/taped-split.jpg";
-import imuMarkedMagPins from "../../../assets/imu-mag/imu-marked-mag-pins.jpg";
-import imuMagPinsSoldered from "../../../assets/imu-mag/imu-mag-pins-soldered.jpg";
-import pinsSplit from "../../../assets/pins/pins-split.jpg";
-import pinsUnsplit from "../../../assets/pins/pins-unsplit.jpg";
-import sparePin90deg from "../../../assets/pins/spare-pin-90deg.jpg";
-import pinsPlastic from "../../../assets/pins/pins-plastic.jpg";
-import imuInSolderingRig from "../../../assets/imu-solder/imu-in-soldering-rig.jpg";
-import imuInSolderingRigWithPins from "../../../assets/imu-solder/imu-in-soldering-rig-with-pins.jpg";
-import imuInRigSoldered from "../../../assets/imu-solder/imu-in-rig-soldered.jpg";
-import imuSolderedStandalone from "../../../assets/imu-solder/imu-soldered-standalone.jpg";
-import imuSolderedPlasticRemoved from "../../../assets/imu-solder/imu-soldered-pins-plastic-removed.jpg";
 
-### IMUs
+## IMU (Inertial Measurement Unit)
+
+This guide is using the LSM6DSV IMU from [Mofflab](https://moffshop.deyta.de/)
+
+import imu from "../../../assets/imu/imu.jpg";
+
+<Image src={imu} alt="IMU" style="max-height: 300px;width:auto;" />
 
 When your IMUs arrive assuming they are LSM6DSVs ordered from [Mofflab](https://moffshop.deyta.de/) they will arrive connected like the
 following:
+
+import combinedIMUs from "../../../assets/imu-prep/1-combined.jpg";
+import combinedIMUsFlipped from "../../../assets/imu-prep/2-combined-flipped.jpg";
 
 <table>
     <tr>
@@ -57,6 +49,8 @@ Avoid splitting your IMUs apart straight away. Leaving them connecting will help
 To protect the IMU that will be tightly stacked on top of the rest of our electronics we want to apply Kapton Tape to the back of the IMU
 to ensure that no contacts are shorted against the board underneath it
 
+import tapedCombedIMUs from "../../../assets/imu-prep/3-combined-taped.jpg";
+
 <Image
     src={tapedCombedIMUs}
     alt="Taped IMUs"
@@ -71,6 +65,8 @@ Try to line up the IMU with the left side of the tape as this will make trimming
 
 After applying your tape trim down the tape with scissors or a sharp craft knife so that it matches the size of the IMUs
 
+import tapedCombedIMUsTrimmed from "../../../assets/imu-prep/4-combined-taped-trimmed.jpg";
+
 <Image
     src={tapedCombedIMUsTrimmed}
     alt="Trimmed down taped IMUs"
@@ -80,6 +76,9 @@ After applying your tape trim down the tape with scissors or a sharp craft knife
 ### Splitting IMUs
 
 Now that you've taped your IMUs you can split them apart, I recommend running a sharp knife across the dividing lines to split the tape and loosen then bond before gently bending until it snaps off
+
+import imuCutLines from "../../../assets/imu-prep/imu-cut-lines.jpg";
+import tapedSplit from "../../../assets/imu-prep/taped-split.jpg";
 
 <table>
     <tr>
@@ -122,6 +121,9 @@ Some important snips from the above documentation:
 
 To connect the magnetometer you must bridge pads 5, 6, 7, and 8 like so:
 
+import imuMarkedMagPins from "../../../assets/imu-mag/imu-marked-mag-pins.jpg";
+import imuMagPinsSoldered from "../../../assets/imu-mag/imu-mag-pins-soldered.jpg";
+
 <table>
     <tr>
         <td>
@@ -152,6 +154,9 @@ Your MCU board should have come with set of pins, we will be using these to conn
 
 Take your pins and split them into 6 + 6 + 1 (Each row should have 13 pins) like so:
 
+import pinsSplit from "../../../assets/pins/pins-split.jpg";
+import pinsUnsplit from "../../../assets/pins/pins-unsplit.jpg";
+
 <table>
     <tr>
         <td>
@@ -173,6 +178,8 @@ Take your pins and split them into 6 + 6 + 1 (Each row should have 13 pins) like
 
 Once you've split the pins you'll need to push down the plastic covering till the pin is barely sticking out the bottom like so:
 
+import pinsPlastic from "../../../assets/pins/pins-plastic.jpg";
+
 <Image
     src={pinsPlastic}
     alt="Pins Split"
@@ -182,6 +189,8 @@ Once you've split the pins you'll need to push down the plastic covering till th
 #### Preparing your solder cube
 
 First place your IMU in the top of the soldering cube, the side with the most pins should be facing outwards towards the open side of the cube like so:
+
+import imuInSolderingRig from "../../../assets/imu-solder/imu-in-soldering-rig.jpg";
 
 <Image
     src={imuInSolderingRig}
@@ -193,6 +202,8 @@ Next place the pins you cut so that they sit in the following holes on the solde
 
 Only the last 6 pins should line up, skip the first pin on the left:
 
+import imuInSolderingRigWithPins from "../../../assets/imu-solder/imu-in-soldering-rig-with-pins.jpg";
+
 <Image
     src={imuInSolderingRigWithPins}
     alt="IMU in soldering rig with pins"
@@ -202,6 +213,8 @@ Only the last 6 pins should line up, skip the first pin on the left:
 #### Solder the pins
 
 You can now solder the pins to the pads on the IMU:
+
+import imuInRigSoldered from "../../../assets/imu-solder/imu-in-rig-soldered.jpg";
 
 <Image
     src={imuInRigSoldered}
@@ -213,21 +226,291 @@ You can now solder the pins to the pads on the IMU:
 
 Now that you've finished soldering the IMU you can remove it from the soldering cube and remove the plastic casing from the pins:
 
+import imuSolderedStandalone from "../../../assets/imu-solder/imu-soldered-standalone.jpg";
+import imuSolderedPlasticRemoved from "../../../assets/imu-solder/imu-soldered-pins-plastic-removed.jpg";
+
 <table>
     <tr>
         <td>
             <Image
                 src={imuSolderedStandalone}
-                alt="Pins"
+                alt="IMU soldered outside of soldering cube"
                 style="max-height: 400px;width:auto;"
             />
         </td>
         <td>
             <Image
                 src={imuSolderedPlasticRemoved}
-                alt="Pins Split"
+                alt="IMU soldered plastic removed"
                 style="max-height: 400px;width:auto;"
             />
         </td>
     </tr>
 </table>
+
+## MCU (Microcontroller Unit)
+
+The board used for this tracker is the SuperMini (ProMicro) nRF52840
+
+import board from "../../../assets/board/board.jpg";
+
+<Image src={board} alt="Board" style="max-height: 400px;width:auto;" />
+
+### Flashing Firmware
+
+> The firmware flashing guide has not been created yet
+
+### Pre-solder points
+
+We are going to pre-solder some points ahead of time on your MCU in order to make things
+easier for later steps.
+
+These points are:
+
+- B+ & GND - Battery terminals
+- 006 & GND - Button
+- C3 - Wire mod (For improved signal)
+
+import boardSolderPoints from "../../../assets/board/board-solder-points.jpg";
+import boardPreSoldered from "../../../assets/board/board-pre-soldered.jpg";
+
+<table>
+    <tr>
+        <td>
+            <Image
+                src={boardSolderPoints}
+                alt="Solder points"
+                style="max-height: 400px;width:auto;"
+            />
+        </td>
+        <td>
+            <Image
+                src={boardPreSoldered}
+                alt="Points soldered"
+                style="max-height: 400px;width:auto;"
+            />
+        </td>
+    </tr>
+</table>
+
+### Solder the button
+
+Connect your button to the 006 and GND pins that you soldered in the previous step you can do this by the button ontop of the solder using a pair of pliers then heating the pins and the solder to push the button into the solder ball:
+
+import boardSolderedButton from "../../../assets/board/board-soldered-button.jpg";
+
+<Image
+    src={boardSolderedButton}
+    alt="Points soldered"
+    style="max-height: 400px;width:auto;"
+/>
+
+## Combining
+
+### First side
+
+You can now combine the IMU and the MCU. Place the IMU on top of your MCU placing its pins through holes 017 through to 100, the LSM6DSV label should be facing in the same direction as the USB-C port like below:
+
+import boardImuTop from "../../../assets/board-imu-mount/board-imu-top.jpg";
+
+<Image
+    src={boardImuTop}
+    alt="Board with IMU on top"
+    style="max-height: 400px;width:auto;"
+/>
+
+Push your IMU through the MCU holes until it is fit snug against the MCU:
+
+import boardImuSnug from "../../../assets/board-imu-mount/board-imu-snug.jpg";
+
+<Image
+    src={boardImuSnug}
+    alt="Board with IMU snug on top"
+    style="max-height: 400px;width:auto;"
+/>
+
+Now you can flip the board over to the bottom:
+
+import boardImuUnderside from "../../../assets/board-imu-mount/board-imu-underside.jpg";
+
+<Image
+    src={boardImuUnderside}
+    alt="Underside of the board"
+    style="max-height: 400px;width:auto;"
+/>
+
+And snip off the pins until they are flush with the bottom of the MCU:
+
+import boardImuUndersideSnipped from "../../../assets/board-imu-mount/board-imu-underside-snipped.jpg";
+
+<Image
+    src={boardImuUndersideSnipped}
+    alt="Underside of the board with snipped pins"
+    style="max-height: 400px;width:auto;"
+/>
+
+Solder the snipped pins to the underside of the MCU:
+
+import boardUndersideImuSoldered from "../../../assets/board-imu-mount/board-underside-imu-soldered.jpg";
+
+<Image
+    src={boardUndersideImuSoldered}
+    alt="Underside of the board with soldered pins"
+    style="max-height: 400px;width:auto;"
+/>
+
+Your tracker should now look like this:
+
+import boardWithImuSolderedTop from "../../../assets/board-imu-mount/board-with-imu-soldered-top.jpg";
+
+<Image
+    src={boardWithImuSolderedTop}
+    alt="Top of board current state"
+    style="max-height: 400px;width:auto;"
+/>
+
+### Second side
+
+Next we need to connect 002 on the MCU to the corresponding pin on the IMU
+
+#### Bending the spare pin
+
+Take the spare 1 pin from the pins that we split previously and create a 90deg bend at the top and remove the plastic from the bottom like so:
+
+import sparePin90deg from "../../../assets/pins/spare-pin-90deg.jpg";
+
+<Image
+    src={sparePin90deg}
+    alt="Pin with 90deg bend"
+    style="max-height: 400px;width:auto;"
+/>
+
+#### Solder the pin
+
+Insert the pin through hole 002 on the MCU ensuring the bent portion connects with the IMU like so:
+
+import sparePin02Thru from "../../../assets/board-imu-mount/spare-pin-02-thru.jpg";
+
+<Image
+    src={sparePin02Thru}
+    alt="Pin through 002"
+    style="max-height: 400px;width:auto;"
+/>
+
+Then flip the tracker over and solder the pin from underneath the board, ensure the pin doesn't rotate while you are flipping it or soldering it:
+
+import sparePinSolderBase from "../../../assets/board-imu-mount/spare-pin-solder-base.jpg";
+
+<Image
+    src={sparePinSolderBase}
+    alt="Pin through 002 soldered"
+    style="max-height: 400px;width:auto;"
+/>
+
+Once you've soldered the bottom solder the top portion to the IMU
+
+import sparePinUnsolderedTop from "../../../assets/board-imu-mount/spare-pin-unsoldered-top.jpg";
+import sparePinUnsolderedBottom from "../../../assets/board-imu-mount/spare-pin-soldered-top.jpg";
+
+<table>
+    <tr>
+        <td>
+            <Image
+                src={sparePinUnsolderedTop}
+                alt="Spare pin unsoldered top"
+                style="max-height: 400px;width:auto;"
+            />
+        </td>
+        <td>
+            <Image
+                src={sparePinUnsolderedBottom}
+                alt="Spare pin soldered top"
+                style="max-height: 400px;width:auto;"
+            />
+        </td>
+    </tr>
+</table>
+
+Make sure you snip off the rest of the pin at the bottom so that its flush to the MCU, you may need to resolder hte bottom after making it flush.
+
+## Test
+
+> The testing guide has not been created yet, but at this point it would be a good idea to use a serial console with the tracker plugged into your computer to test that the tracker is detecting your IMU and Magnetometer
+
+## Wire mod
+
+### Cutting wire
+
+Next to improve the signal strength of our MCU ("SuperMinis have horrendous signal strength by themselves") we will cut a piece of wire to act as a antenna.
+
+Cut around 33mm of your wire for however many trackers you need:
+
+import wireModWidth from "../../../assets/wire-mod/wire-mod-width.jpg";
+
+<Image
+    src={wireModWidth}
+    alt="Cut wire"
+    style="max-height: 400px;width:auto;"
+/>
+
+After cutting your wire strip ~1mm of the casing from the end of the wire
+
+import wireModStripped from "../../../assets/wire-mod/wire-mod-stripped.jpg";
+
+<Image
+    src={wireModStripped}
+    alt="Wire stripped"
+    style="max-height: 400px;width:auto;"
+/>
+
+Now you can solder your wire to the MCU in the following spot:
+
+import wireModSoldered from "../../../assets/wire-mod/wire-mod-soldered.jpg";
+
+<Image
+    src={wireModSoldered}
+    alt="Wire soldered"
+    style="max-height: 400px;width:auto;"
+/>
+
+## Battery
+
+Now all thats left to solder is your battery:
+
+import battery from "../../../assets/battery/battery.jpg";
+
+<Image src={battery} alt="Battery" style="max-height: 400px;width:auto;" />
+
+Connect the red wire from your battery to the B+ pin on the MCU that you've soldered previously and the black wire form your battery to the GND pin under the B+ like so:
+
+import batterySoldered from "../../../assets/battery/battery-soldered.jpg";
+
+<Image
+    src={batterySoldered}
+    alt="Battery Soldered"
+    style="max-height: 400px;width:auto;"
+/>
+
+:::tip
+Ensure you solder the wires angled to the left side of the IMU as shown in the photo as this is where the battery will sit within the case and your pins will not fit / will snap due to case clearance if you solder them to the right
+:::
+
+## Case
+
+Your tracker is now complete you can stick it into your case now:
+
+import mounted from "../../../assets/case/mounted-in-case.jpg";
+
+<Image
+    src={mounted}
+    alt="Mounted in case"
+    style="max-height: 400px;width:auto;"
+/>
+
+:::note[Important]
+Ensure that you route your power wires around the button, if they overlap with the button they can make it hard / impossible to push the button with the case lid on
+:::
+
+## All done
+
+Now its time to [Pair & Calibrate](https://docs.slimevr.dev/smol-slimes/firmware/smol-pairing-and-calibration.html) your trackers
