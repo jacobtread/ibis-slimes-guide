@@ -1,0 +1,187 @@
+---
+title: Parts
+description: The components you will need to build the trackers
+---
+
+import { Image } from "astro:assets";
+
+## Required components
+
+- [MCU](#mcu)
+- [IMU](#imu)
+- [Button](#button)
+- [Battery](#battery)
+- [Wire](#wire)
+- [Receiver](#receiver)
+- [Kapton Tape](#kapton-tape)
+- [Printed components](#printed-components)
+- [Straps](#straps)
+- [Charging](#charging)
+
+:::note
+For IMUs and MCUs it's recommended that you buy at least 20% more than you plan to use in case you break some components during assembly
+
+For example:
+
+If you're building 8 trackers purchase 10 IMUs and 10 MCUs
+
+If you are more experienced at soldering small components your chance of breaking components is much lower and you can probably skip buying additional MCUs however its
+still a good idea to purchase additional IMUs as the magnetometer is sensitive to heat
+and can be broken if you apply too much heat for too long
+:::
+
+## MCU
+
+#### ProMicro NRF52840
+
+import board from "../../../assets/board/board.jpg";
+
+<Image src={board} alt="Board" style="max-height: 400px;width:auto;" />
+
+> Board color may differ depending on manufacturer
+
+Sources:
+
+- [AliExpress](https://www.aliexpress.com/item/1005007738886550.html)
+- [AliExpress Alternative](https://www.aliexpress.com/item/1005009308745668.html)
+
+## IMU
+
+#### LSM6DSV
+
+import imu from "../../../assets/imu/imu.jpg";
+
+<Image src={imu} alt="IMU" style="max-height: 300px;width:auto;" />
+
+Sources:
+
+- [Mofflab](https://moffshop.deyta.de/)
+
+:::note
+Alternative IMUs can be used however the pins you are required to solder may differ from the guide so using another IMU is at your own discretion.
+
+Moffshop is a trusted seller of LSM6DSV within the SlimeVR community so they are the
+recommended source for these chips. It is not recommended **NOT** buy your IMU from AliExpress as this is a important component and AliExpress quality can vary greatly
+for this.
+:::
+
+## Button
+
+#### 2-pin Tactile Button (2mm)
+
+import button from "../../../assets/parts/button.png";
+
+<Image src={button} alt="Button" style="max-height: 300px;width:auto;" />
+
+Sources:
+
+- [AliExpress](https://www.aliexpress.com/item/1005010414139374.html)
+- [AliExpress Alternative](https://www.aliexpress.com/item/1005001302607169.html)
+
+## Battery
+
+#### 401230 3.7V 110 mAh LiPo Battery
+
+import battery from "../../../assets/parts/battery.png";
+
+<Image src={battery} alt="Battery" style="max-height: 300px;width:auto;" />
+
+Sources:
+
+- [AliExpress 130 mAh](https://www.aliexpress.com/item/1005002931560055.html)
+- [AliExpress 130 mAh Alternative](https://www.aliexpress.com/item/1005011548432569.html)
+- [AliExpress 115 mAh Alternative](https://www.aliexpress.com/item/1005006327425971.html)
+
+:::note
+Any similar-sized battery works as long as the voltage matches
+:::
+
+## Wire
+
+import wire from "../../../assets/parts/wire.png";
+
+<Image src={wire} alt="Wire" style="max-height: 300px;width:auto;" />
+
+Choose 24AWG wire I recommend about 5m of it to give you plenty to work with (You'll have plenty spare)
+
+Sources:
+
+- [AliExpress](https://www.aliexpress.com/item/1005004771405920.html)
+
+## Receiver
+
+#### Holyiot nRF52840+PA Receiver
+
+import holyIotReceiver from "../../../assets/parts/holy-iot-receiver.png";
+
+<Image
+    src={holyIotReceiver}
+    alt="Holy IOT Receiver"
+    style="max-height: 300px;width:auto;"
+/>
+
+Sources:
+
+- [AliExpress](https://www.aliexpress.com/item/1005004673179004.html)
+- [AliExpress Alternative](https://www.aliexpress.com/item/1005013059122377.html)
+
+:::note
+AliExpress is unable to ship the first one to some countries due to magnet restrictions, the "AliExpress Alternative" link does not contain a magnet so it can ship to the countries that are blocked by that restriction. If you use the alternative link you must just simply buy a small magnet separately.
+:::
+
+## Kapton Tape
+
+import kaptonTape from "../../../assets/parts/kapton-tape.png";
+
+<Image
+    src={kaptonTape}
+    alt="Kapton Tape"
+    style="max-height: 300px;width:auto;"
+/>
+
+Choose a Width around ~20MM if you can't find any in that size you can choose a larger
+size as it will be cut down to fit the IMU as part of the assembly process.
+
+Sources:
+
+- [AliExpress](https://www.aliexpress.com/item/1005007518587827.html)
+
+## Printed components
+
+Some components that you'll likely need to 3D print or have 3D printed for you if you do not own a 3D printer:
+
+- [Solder Cube](/models/SolderCube.stl) - Small printed holder ot assist with soldering your IMU
+- [Body](/models/tracker/Body.stl) - Body of the tracker case
+- [Lid](/models/tracker/Lid.stl) - Lid to the tracker case
+- [Tray](/models/tracker/Tray.stl) - Tray that the trackers will slide into (Not required for VYRO straps as they come included)
+- [GoProChestMount](/models/tracker/GoProChestMount.stl) - Go pro strap chest mount (Only required if you are making your own straps that use a Go Pro chest mount)
+
+## Straps
+
+I highly recommend the [VYRO VR Comfort Straps](https://vyrovr.com/collections/vyro-vr-comfort-straps) but you
+can also build your own straps [DIY Straps](https://docs.slimevr.dev/diy/diy-strap-components.html)
+
+## Charging
+
+To charge your trackers you can buy a proper dock or you can simply buy a USB hub and
+some USB adapters which will do the job just as well:
+
+#### USB Hub
+
+import hub from "../../../assets/parts/hub.png";
+
+<Image src={hub} alt="USB Hub" style="max-height: 300px;width:auto;" />
+
+You can use your preferred cable length here
+
+- [AliExpress](https://www.aliexpress.com/item/1005012598934325.html)
+
+#### USB-A to USB-C
+
+import usbCtoA from "../../../assets/parts/usb-c-to-a.png";
+
+<Image src={usbCtoA} alt="USB C to A" style="max-height: 300px;width:auto;" />
+
+You'll want the `Type C Ma to USB Ma` / `USB C Male to USB A Male` kind
+
+- [AliExpress](https://www.aliexpress.com/item/1005007396270447.html)
