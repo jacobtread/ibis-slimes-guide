@@ -6,30 +6,36 @@ import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "static",
+    output: "static",
 
-  integrations: [
-      starlight({
-          title: "ibis slimes guide",
-          social: [
-              {
-                  icon: "github",
-                  label: "GitHub",
-                  href: "https://github.com/jacobtread/ibis-slimes-guide",
-              },
-          ],
-          sidebar: [
-              {
-                  label: "Guides",
-                  items: [
-                      { label: "Overview", slug: "guides/overview" },
-                      { label: "Parts", slug: "guides/parts" },
-                      { label: "Assembly", slug: "guides/assembly" },
-                  ],
-              },
-          ],
-      }),
-  ],
+    integrations: [
+        starlight({
+            title: "Slimed",
+            social: [
+                {
+                    icon: "github",
+                    label: "GitHub",
+                    href: "https://github.com/jacobtread/ibis-slimes-guide",
+                },
+            ],
+            sidebar: [
+                {
+                    label: "Guides",
+                    items: [
+                        { label: "Overview", slug: "guides/overview" },
+                        { label: "Parts", slug: "guides/parts" },
+                        { label: "Assembly", slug: "guides/assembly" },
+                    ],
+                },
+                {
+                    label: "Reference",
+                    items: [{ autogenerate: { directory: "reference" } }],
+                },
+            ],
+        }),
+    ],
 
-  adapter: cloudflare(),
+    adapter: cloudflare({
+        prerenderEnvironment: "node",
+    }),
 });
