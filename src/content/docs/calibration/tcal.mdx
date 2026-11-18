@@ -2,3 +2,117 @@
 title: Temperature Calibration
 description: Calibration
 ---
+
+import { Steps, Aside } from "@astrojs/starlight/components";
+import { Image } from "astro:assets";
+
+## What
+
+Temperature Calibration is a type of calibration which compensates for temperature-related gyro drift. As temperature changes it can affect the gyroscope and cause tracker drift, this method
+of calibration involves gradually heating up the trackers while the trackers automatically collect data, this data is then used to create a temperature curve that is used to compensate for the
+temperature-related gyro drift.
+
+This is performed by cooling and then subsequently heating the trackers. The trackers will capture data as long as they detect themselves heating up while stationary
+
+## Requirements
+
+- Fridge
+- 3D Printer (Optimal for easy heating, a hot water bottle + towel or a hairdryer can be used as an alternative if unavailable)
+
+## Steps
+
+import serialConsole from "../../../assets/tcal/serial-console-cropped.png";
+import serialConsoleConfirmSend from "../../../assets/tcal/serial-console-confirm-send.png";
+import sendAllTcalOn from "../../../assets/tcal/send-all-tcal-on.png";
+import sendAllTcalAutoOn from "../../../assets/tcal/send-all-tcal-auto-on.png";
+import slimesRoomTemp from "../../../assets/tcal/slimes-room-temp.png";
+import slimesFridgeTemp from "../../../assets/tcal/slimes-fridge-temp.png";
+import tcalFridge from "../../../assets/tcal/tcal-fridge.jpg";
+import tcalPrinterBed from "../../../assets/tcal/tcal-printer-bed.jpg";
+
+<Steps>
+
+1. In NRF-Connect or within the SlimeVR app serial console run the `send all tcal on` command to your receiver, this will tell all your trackers to enable temperature calibration.
+
+    You can find the serial console in the SlimeVR server here:
+
+    <Image
+        src={serialConsole}
+        alt="serial console"
+        style="max-height: 300px;width:auto;"
+    />
+
+    You will need to confirm you know what you are doing:
+
+    <Image
+        src={serialConsoleConfirmSend}
+        alt="serial console confirm send"
+        style="max-height: 300px;width:auto;"
+    />
+
+    Then you can run the command:
+
+    <Image
+        src={sendAllTcalOn}
+        alt="send all tcal on"
+        style="max-height: 300px;width:auto;"
+    />
+
+2. Next send the `send all tcal auto on` command to your receiver, this will tell all your connected trackers to begin automatic calibration
+
+    <Image
+        src={sendAllTcalAutoOn}
+        alt="send all tcal on"
+        style="max-height: 300px;width:auto;"
+    />
+
+3. Ensure your trackers are at room temperature, you can assume they are likely already at room temperature if you haven't heated them
+
+    <Image
+        src={slimesRoomTemp}
+        alt="send all tcal on"
+        style="max-height: 300px;width:auto;"
+    />
+
+4. Place all of your trackers in your fridge, observe the temperature of your trackers in the SlimeVR server until they reach as close to 5°C as possible (8-10°C is acceptable if you are unable to get the trackers any colder)
+
+    Ensure there is adequate space between your trackers so that they can cool down faster:
+
+    <Image
+        src={tcalFridge}
+        alt="tcal fridge"
+        style="max-height: 300px;width:auto;"
+    />
+
+    <Image
+        src={slimesFridgeTemp}
+        alt="send all tcal on"
+        style="max-height: 300px;width:auto;"
+    />
+
+5. Once the trackers have settled at the desired temperature take the trackers out of your fridge and place them directly on the bed of your 3D printer (Do not start heating the bed yet), allow your trackers to reach room temperature before continuing
+
+    <Image
+        src={tcalPrinterBed}
+        alt="send all tcal on"
+        style="max-height: 500px;width:auto;"
+    />
+
+6. After your trackers have reached room temperature you can gradually raise the temperature of your printer bed in small increments to allow the trackers to slowly heat up to 45°C
+
+    <Image
+        src={slimesRoomTemp}
+        alt="send all tcal on"
+        style="max-height: 300px;width:auto;"
+    />
+
+7. Once the trackers have settled for a few moments at 45°C take your trackers out of your printer and allow them to return to room temperature
+
+    <Aside type="danger">
+        Do NOT leave your trackers unattended on your heated 3D printer bed
+        prolonged heat exposure can damage your battery or cause it to swell.
+    </Aside>
+
+8. Finally send the `send all tcal auto off` command to your receiver, this will disable automatic temperature calibration now that we have collected all the required data.
+
+</Steps>

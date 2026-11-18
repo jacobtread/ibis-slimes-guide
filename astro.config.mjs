@@ -28,6 +28,15 @@ export default defineConfig({
                     ],
                 },
                 {
+                    label: "Calibration",
+                    items: [
+                        {
+                            label: "Temperature Calibration",
+                            slug: "calibration/tcal",
+                        },
+                    ],
+                },
+                {
                     label: "Reference",
                     items: [{ autogenerate: { directory: "reference" } }],
                 },
