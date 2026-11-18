@@ -31,6 +31,10 @@ export default defineConfig({
                     label: "Calibration",
                     items: [
                         {
+                            label: "6-side (18 axis)",
+                            slug: "calibration/6-side-18",
+                        },
+                        {
                             label: "Temperature Calibration",
                             slug: "calibration/tcal",
                         },
